@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Forge — Generate QR Codes for Links, Wi-Fi &amp; Contacts</title>
+<meta name="description" content="Generate QR codes for URLs, text, Wi-Fi networks, and contact cards. Free, instant, no sign-up. Customize color and size, download as PNG.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2228%22 height=%2228%22 x=%228%22 y=%228%22 fill=%22%230B0E0F%22/><rect width=%2228%22 height=%2228%22 x=%2264%22 y=%228%22 fill=%22%230B0E0F%22/><rect width=%2228%22 height=%2228%22 x=%228%22 y=%2264%22 fill=%22%230B0E0F%22/><rect width=%2212%22 height=%2212%22 x=%2264%22 y=%2264%22 fill=%22%233CCB7F%22/><rect width=%2212%22 height=%2212%22 x=%2280%22 y=%2280%22 fill=%22%233CCB7F%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span class="dot"></span>
+      </span>
+      QR<span class="brand-accent">Forge</span>
+    </a>
+    <a class="topbar-link" href="https://github.com/sofiyann-codes/qr-code-generator-python" target="_blank" rel="noopener">
+      Source on GitHub ↗
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO / LIVE GENERATOR -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Free &middot; instant &middot; no sign-up</p>
+      <h1>Turn anything<br>into a <span class="ink-underline">scannable</span> code.</h1>
+      <p class="hero-sub">Links, Wi-Fi logins, contact cards — generated live in your browser, in your colors, ready to download as a PNG.</p>
+    </div>
+
+    <div class="generator-card" id="generator">
+
+      <div class="tabs" role="tablist" aria-label="QR code type">
+        <button class="tab is-active" role="tab" aria-selected="true" data-type="text">Text / URL</button>
+        <button class="tab" role="tab" aria-selected="false" data-type="wifi">Wi-Fi</button>
+        <button class="tab" role="tab" aria-selected="false" data-type="vcard">Contact</button>
+      </div>
+
+      <div class="panel-grid">
+
+        <!-- INPUT PANELS -->
+        <div class="inputs">
+
+          <!-- TEXT / URL PANEL -->
+          <div class="form-panel is-active" data-panel="text">
+            <label for="f-text">Link or text</label>
+            <textarea id="f-text" rows="3" placeholder="https://sofiyann-codes.github.io or any text">https://github.com/sofiyann-codes</textarea>
+          </div>
+
+          <!-- WIFI PANEL -->
+          <div class="form-panel" data-panel="wifi">
+            <div class="field-row">
+              <div class="field">
+                <label for="w-ssid">Network name (SSID)</label>
+                <input id="w-ssid" type="text" placeholder="My Home WiFi" maxlength="63">
+              </div>
+              <div class="field">
+                <label for="w-security">Security</label>
+                <select id="w-security">
+                  <option value="WPA" selected>WPA / WPA2 / WPA3</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">None (open network)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" id="w-pass-field">
+              <label for="w-pass">Password</label>
+              <input id="w-pass" type="text" placeholder="••••••••" maxlength="63">
+            </div>
+            <label class="checkbox-row">
+              <input type="checkbox" id="w-hidden">
+              <span>Hidden network</span>
+            </label>
+          </div>
+
+          <!-- VCARD PANEL -->
+          <div class="form-panel" data-panel="vcard">
+            <div class="field-row">
+              <div class="field">
+                <label for="v-first">First name</label>
+                <input id="v-first" type="text" placeholder="Sofiyan">
+              </div>
+              <div class="field">
+                <label for="v-last">Last name</label>
+                <input id="v-last" type="text" placeholder="Pasha">
+              </div>
+            </div>
+            <div class="field">
+              <label for="v-org">Organization <span class="optional">optional</span></label>
+              <input id="v-org" type="text" placeholder="KITSW">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="v-phone">Phone</label>
+                <input id="v-phone" type="tel" placeholder="+91 90000 00000">
+              </div>
+              <div class="field">
+                <label for="v-email">Email</label>
+                <input id="v-email" type="email" placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="field">
+              <label for="v-url">Website <span class="optional">optional</span></label>
+              <input id="v-url" type="text" placeholder="https://sofiyann-codes.github.io">
+            </div>
+          </div>
+
+          <!-- SHARED CUSTOMIZATION -->
+          <div class="customize">
+            <p class="customize-label">Appearance</p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="opt-size">Size <span class="value-pill" id="opt-size-val">280px</span></label>
+                <input id="opt-size" type="range" min="160" max="600" step="20" value="280">
+              </div>
+              <div class="field">
+                <label for="opt-ec">Error correction</label>
+                <select id="opt-ec">
+                  <option value="L">L — Low (7%)</option>
+                  <option value="M" selected>M — Medium (15%)</option>
+                  <option value="Q">Q — Quartile (25%)</option>
+                  <option value="H">H — High (30%)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field swatch-field">
+                <label for="opt-fg">Code color</label>
+                <div class="swatch-input">
+                  <input id="opt-fg" type="color" value="#0B0E0F">
+                  <span class="swatch-hex" id="opt-fg-hex">#0B0E0F</span>
+                </div>
+              </div>
+              <div class="field swatch-field">
+                <label for="opt-bg">Background</label>
+                <div class="swatch-input">
+                  <input id="opt-bg" type="color" value="#FFFFFF">
+                  <span class="swatch-hex" id="opt-bg-hex">#FFFFFF</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="hint" id="contrast-hint" hidden>⚠ Low contrast between code and background — scanners may struggle. Try a darker code or lighter background.</p>
+          </div>
+
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview">
+          <div class="preview-frame">
+            <div id="qr-canvas-holder"></div>
+          </div>
+          <p class="preview-caption" id="preview-caption">Scan to open the QR Forge repo</p>
+          <p class="hint" id="emoji-hint" hidden>⚠ Emoji were removed — this QR format can't encode them reliably.</p>
+          <div class="preview-actions">
+            <button class="btn btn-primary" id="btn-download">Download PNG</button>
+            <button class="btn btn-ghost" id="btn-copy">Copy image</button>
+          </div>
+          <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features wrap" id="features">
+    <h2 class="section-title">Built for the codes you actually need</h2>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon" data-icon="link"></div>
+        <h3>Links &amp; plain text</h3>
+        <p>Paste any URL or message. The grid below updates as you type — no generate button to hunt for.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon" data-icon="wifi"></div>
+        <h3>Wi-Fi auto-connect</h3>
+        <p>Encode an SSID and password into a standard Wi-Fi QR payload. Most phone cameras join the network on scan, no typing required.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon" data-icon="card"></div>
+        <h3>Contact cards (vCard)</h3>
+        <p>Name, phone, email, and site bundled into a vCard. Scanning it offers to save a new contact directly.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon" data-icon="palette"></div>
+        <h3>Color &amp; size control</h3>
+        <p>Match a brand palette or a poster's background. A contrast check warns you before a code becomes unscannable.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how wrap" id="how">
+    <h2 class="section-title">How it works</h2>
+    <ol class="how-steps">
+      <li><span class="step-no">01</span><div><h4>Pick a type</h4><p>Text/URL, Wi-Fi, or Contact.</p></div></li>
+      <li><span class="step-no">02</span><div><h4>Fill it in</h4><p>The preview redraws itself live, right there in your browser.</p></div></li>
+      <li><span class="step-no">03</span><div><h4>Tune the look</h4><p>Pick a size and a color pair that fits where the code will live.</p></div></li>
+      <li><span class="step-no">04</span><div><h4>Download</h4><p>Save it as a PNG — ready to print, post, or paste into a slide.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- DEPLOY GUIDE -->
+  <section class="deploy wrap" id="deploy">
+    <h2 class="section-title">Hosting this for free</h2>
+    <p class="deploy-intro">This page is a single static HTML/CSS/JS bundle — no server, no build step, no database. That means it's free to host anywhere that serves static files. Two solid options:</p>
+
+    <div class="deploy-grid">
+      <article class="deploy-card">
+        <h3>GitHub Pages <span class="tag">recommended</span></h3>
+        <p>Hosted straight from your existing repo, on a URL like <code>sofiyann-codes.github.io/qr-code-generator-python</code>.</p>
+        <ol>
+          <li>Add <code>index.html</code>, <code>style.css</code>, and <code>script.js</code> to the repo root.</li>
+          <li>Commit and push to the <code>main</code> branch.</li>
+          <li>On GitHub: <strong>Settings → Pages → Build and deployment</strong>.</li>
+          <li>Source: <strong>Deploy from a branch</strong> → Branch: <strong>main</strong>, folder <strong>/ (root)</strong> → Save.</li>
+          <li>Wait ~1 minute, then visit the URL GitHub shows on that same page.</li>
+        </ol>
+      </article>
+      <article class="deploy-card">
+        <h3>Netlify <span class="tag">drag &amp; drop</span></h3>
+        <p>No GitHub steps required if you just want a live link fast.</p>
+        <ol>
+          <li>Go to <strong>app.netlify.com/drop</strong>.</li>
+          <li>Drag the folder containing <code>index.html</code>, <code>style.css</code>, <code>script.js</code> onto the page.</li>
+          <li>Netlify gives you a live <code>*.netlify.app</code> URL instantly.</li>
+          <li>Optional: claim a custom subdomain in <strong>Site settings → Domain management</strong>.</li>
+        </ol>
+      </article>
+    </div>
+
+    <p class="deploy-note">Both are genuinely free for a static site like this one — no card required, no traffic cap you'd realistically hit.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq wrap" id="faq">
+    <h2 class="section-title">Good to know</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Does any of this touch a server?</summary>
+        <p>No. Every code is built locally in your browser with JavaScript. Nothing you type is uploaded, logged, or stored anywhere.</p>
+      </details>
+      <details>
+        <summary>Why does my Wi-Fi QR code show the password as plain text?</summary>
+        <p>That's inherent to the Wi-Fi QR format, not this tool — anyone who scans the code can see the network's credentials. Only share Wi-Fi codes with people you'd trust with the password directly, and avoid posting them somewhere public.</p>
+      </details>
+      <details>
+        <summary>My scanner says the code is unreadable. What happened?</summary>
+        <p>Usually low contrast between the code and background, a size too small for the amount of data, or a low error-correction setting. Raise the contrast, bump the size up, or switch error correction to Q or H.</p>
+      </details>
+      <details>
+        <summary>Can I use this for a printed poster?</summary>
+        <p>Yes — generate at a larger size (400px+) before downloading so it stays sharp at print resolution, and always test-scan the printed result before mass-printing.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>Built on top of <a href="https://github.com/sofiyann-codes/qr-code-generator-python" target="_blank" rel="noopener">qr-code-generator-python</a> by Mohammed Sofiyan Pasha.</p>
+    <p class="footer-sub">Runs entirely in your browser. No data leaves your device.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
