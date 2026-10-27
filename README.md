@@ -10,9 +10,12 @@ This project lets you generate QR codes for URLs, text, Wi-Fi credentials, and c
 
 Try it instantly in your browser — no install needed:
 
-**[sofiyann-codes.github.io/qr-code-generator-python](https://sofiyann-codes.github.io/qr-code-generator-python/)**
+**👉 [qr-code-generator-python.pages.dev](https://qr-code-generator-python.pages.dev/)**
+
+Alternate mirror (GitHub Pages): [sofiyann-codes.github.io/qr-code-generator-python](https://sofiyann-codes.github.io/qr-code-generator-python/)
 
 The web version runs entirely client-side (no server, nothing uploaded) and supports:
+
 - Text / URL QR codes
 - Wi-Fi QR codes (auto-connect on scan)
 - Contact card QR codes (vCard)
@@ -34,13 +37,16 @@ The web version runs entirely client-side (no server, nothing uploaded) and supp
 ## 🛠️ Technologies Used
 
 **Python script:**
+
 - Python 3
 - `qrcode` library
 - Pillow (PIL)
 
 **Web interface:**
+
 - HTML, CSS, JavaScript (vanilla, no build step)
 - [qrcodejs](https://github.com/davidshimjs/qrcodejs) for in-browser QR rendering
+- Hosted on [Cloudflare Pages](https://pages.cloudflare.com/)
 
 ---
 
@@ -48,10 +54,12 @@ The web version runs entirely client-side (no server, nothing uploaded) and supp
 
 1. Install Python 3
 2. Install requirements:
+
    ```bash
    python -m pip install -r requirements.txt
    ```
 3. Run:
+
    ```bash
    python qr_generator.py
    ```
@@ -65,9 +73,11 @@ No install required. Either:
 
 - Open `index.html` directly in your browser, **or**
 - Serve it locally for the best experience:
+
   ```bash
   python -m http.server 8000
   ```
+
   then visit `http://localhost:8000`
 
 ---
@@ -88,4 +98,6 @@ qr-code-generator-python/
 
 ## Author
 
-Mohammed Sofiyan Pasha
+**Mohammed Sofiyan Pasha**
+
+- GitHub: [@sofiyann-codes](https://github.com/sofiyann-codes)
