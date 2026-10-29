@@ -22,7 +22,7 @@
   gtag('config', 'G-S75XE0QQSC');
 </script>
 =======
-
+>>>>>>> 1e6b7e266a60b7da6e50329977805d2ae691609d
 <body>
 
 <div class="grain"></div>
@@ -224,6 +224,38 @@
       <li><span class="step-no">03</span><div><h4>Tune the look</h4><p>Pick a size and a color pair that fits where the code will live.</p></div></li>
       <li><span class="step-no">04</span><div><h4>Download</h4><p>Save it as a PNG — ready to print, post, or paste into a slide.</p></div></li>
     </ol>
+  </section>
+
+  <!-- DEPLOY GUIDE -->
+  <section class="deploy wrap" id="deploy">
+    <h2 class="section-title">Hosting this for free</h2>
+    <p class="deploy-intro">This page is a single static HTML/CSS/JS bundle — no server, no build step, no database. That means it's free to host anywhere that serves static files. Two solid options:</p>
+
+    <div class="deploy-grid">
+      <article class="deploy-card">
+        <h3>GitHub Pages <span class="tag">recommended</span></h3>
+        <p>Hosted straight from your existing repo, on a URL like <code>sofiyann-codes.github.io/qr-code-generator-python</code>.</p>
+        <ol>
+          <li>Add <code>index.html</code>, <code>style.css</code>, and <code>script.js</code> to the repo root.</li>
+          <li>Commit and push to the <code>main</code> branch.</li>
+          <li>On GitHub: <strong>Settings → Pages → Build and deployment</strong>.</li>
+          <li>Source: <strong>Deploy from a branch</strong> → Branch: <strong>main</strong>, folder <strong>/ (root)</strong> → Save.</li>
+          <li>Wait ~1 minute, then visit the URL GitHub shows on that same page.</li>
+        </ol>
+      </article>
+      <article class="deploy-card">
+        <h3>Netlify <span class="tag">drag &amp; drop</span></h3>
+        <p>No GitHub steps required if you just want a live link fast.</p>
+        <ol>
+          <li>Go to <strong>app.netlify.com/drop</strong>.</li>
+          <li>Drag the folder containing <code>index.html</code>, <code>style.css</code>, <code>script.js</code> onto the page.</li>
+          <li>Netlify gives you a live <code>*.netlify.app</code> URL instantly.</li>
+          <li>Optional: claim a custom subdomain in <strong>Site settings → Domain management</strong>.</li>
+        </ol>
+      </article>
+    </div>
+
+    <p class="deploy-note">Both are genuinely free for a static site like this one — no card required, no traffic cap you'd realistically hit.</p>
   </section>
 
   <!-- FAQ -->
